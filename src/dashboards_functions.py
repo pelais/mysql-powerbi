@@ -46,3 +46,14 @@ def generate_dash_pedidos():
         # Obter o DataFrame da função get_pedidos
         df_pedidos = importlib.import_module('dashboards.dash-pedidos').get_pedidos()
         create_table(conexao, database, 'pedidos', df_pedidos)
+
+
+def generate_dash_faturamento():
+    # Criar conexão com o MySQL
+    database = 'dash_faturamento'
+    conexao = conectar_mysql(HOST, USER, PASSWORD, database)
+
+    if conexao:
+        # Obter o DataFrame da função get_pedidos
+        df_vendas = importlib.import_module('dashboards.dash-faturamento').get_faturamento()
+        create_table(conexao, database, 'vendas', df_vendas)
