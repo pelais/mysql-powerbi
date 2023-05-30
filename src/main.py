@@ -7,6 +7,7 @@ def main():
     generate_dash_compras()
     generate_dash_pedidos()
     generate_dash_faturamento()
+    generate_dash_financeiro()
 
 if __name__ == '__main__':
     main()

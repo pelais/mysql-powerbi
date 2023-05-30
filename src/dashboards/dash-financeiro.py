@@ -26,8 +26,14 @@ def execute_firebird_query(query):
 
     return df_final
 
-def get_pedidos():
-    with open('querys/pedidos/q-pedidos.sql', 'r') as arquivo:
+def get_fluxocaixa():
+    with open('querys/financeiro/q-fluxo-caixa.sql', 'r') as arquivo:
+        query = arquivo.read()
+
+    return execute_firebird_query(query)
+
+def get_calendario():
+    with open('querys/financeiro/q-calendario.sql', 'r') as arquivo:
         query = arquivo.read()
 
     return execute_firebird_query(query)

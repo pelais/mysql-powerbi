@@ -57,3 +57,18 @@ def generate_dash_faturamento():
         # Obter o DataFrame da função get_pedidos
         df_vendas = importlib.import_module('dashboards.dash-faturamento').get_faturamento()
         create_table(conexao, database, 'vendas', df_vendas)
+
+
+def generate_dash_financeiro():
+    # Criar conexão com o MySQL
+    database = 'dash_financeiro'
+    conexao = conectar_mysql(HOST, USER, PASSWORD, database)
+
+    if conexao:
+        # Obter o DataFrame da função get_pedidos
+        df_fluxocaixa = importlib.import_module('dashboards.dash-financeiro').get_fluxocaixa()
+        create_table(conexao, database, 'fluxo_caixa', df_fluxocaixa)
+
+        # Obter o DataFrame da função get_pedidos
+        df_calendario = importlib.import_module('dashboards.dash-financeiro').get_calendario()
+        create_table(conexao, database, 'calendario', df_calendario)
