@@ -1,4 +1,5 @@
-from connection.conn_mysql import HOST, USER, PASSWORD, conectar_mysql
+from connection.conn_mysql import conectar_mysql
+from env import HOST, USER, PASSWORD
 from tables.create_tables import *
 import importlib
 

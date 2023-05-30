@@ -1,2 +1,3 @@
 # Ignorar todos os diretórios _pycache
 ***/__pycache__/
+env.py

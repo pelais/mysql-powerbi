@@ -1,9 +1,5 @@
 import pymysql
 
-HOST = 'localhost'  # substitua pelo endereço do servidor MySQL
-USER = 'root'  # substitua pelo nome de usuário do MySQL
-PASSWORD = 'NXWMevp?E]TgpUzFN4`d'  # substitua pela senha do MySQL
-
 # Conexão MySQL
 def conectar_mysql(host, user, password, database):
     try:
