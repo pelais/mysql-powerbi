@@ -65,10 +65,50 @@ def generate_dash_financeiro():
     conexao = conectar_mysql(HOST, USER, PASSWORD, database)
 
     if conexao:
-        # Obter o DataFrame da função get_pedidos
+        # Obter o DataFrame da função
         df_fluxocaixa = importlib.import_module('dashboards.dash-financeiro').get_fluxocaixa()
         create_table(conexao, database, 'fluxo_caixa', df_fluxocaixa)
 
-        # Obter o DataFrame da função get_pedidos
+        # Obter o DataFrame da função
         df_calendario = importlib.import_module('dashboards.dash-financeiro').get_calendario()
         create_table(conexao, database, 'calendario', df_calendario)
+
+        # Obter o DataFrame da função
+        df_cadastro_grupo = importlib.import_module('dashboards.dash-financeiro').get_cadastrogrupo()
+        create_table(conexao, database, 'cadastro_grupo', df_cadastro_grupo)
+
+        # Obter o DataFrame da função
+        df_comp_fat_desp = importlib.import_module('dashboards.dash-financeiro').get_comparativo_fat_desp()
+        create_table(conexao, database, 'comparativo_fat_desp', df_comp_fat_desp)
+
+        # Obter o DataFrame da função
+        df_comp_rec_desp = importlib.import_module('dashboards.dash-financeiro').get_comparativo_rec_desp()
+        create_table(conexao, database, 'comparativo_rec_desp', df_comp_rec_desp)
+
+        # Obter o DataFrame da função
+        df_contacorrente = importlib.import_module('dashboards.dash-financeiro').get_conta_corrente()
+        create_table(conexao, database, 'conta_corrente', df_contacorrente)
+
+        # Obter o DataFrame da função
+        df_empresa = importlib.import_module('dashboards.dash-financeiro').get_empresa()
+        create_table(conexao, database, 'empresa', df_empresa)
+
+        # Obter o DataFrame da função
+        df_estoque = importlib.import_module('dashboards.dash-financeiro').get_estoque()
+        create_table(conexao, database, 'estoque', df_estoque)
+
+        # Obter o DataFrame da função
+        df_grupo_despesa = importlib.import_module('dashboards.dash-financeiro').get_grupo_despesa()
+        create_table(conexao, database, 'grupo_despesa', df_grupo_despesa)
+
+        # Obter o DataFrame da função
+        df_inadimplencia = importlib.import_module('dashboards.dash-financeiro').get_inadimplencia()
+        create_table(conexao, database, 'inadimplencia', df_inadimplencia)
+
+        # Obter o DataFrame da função
+        df_previsao_pagamento = importlib.import_module('dashboards.dash-financeiro').get_previsao_pagamento()
+        create_table(conexao, database, 'previsao_pagamento', df_previsao_pagamento)
+
+        # Obter o DataFrame da função
+        df_recebimento_tipo = importlib.import_module('dashboards.dash-financeiro').get_recebimento_tipo()
+        create_table(conexao, database, 'recebimento_tipo', df_recebimento_tipo)

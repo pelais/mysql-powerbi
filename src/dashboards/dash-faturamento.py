@@ -27,7 +27,7 @@ def execute_firebird_query(query):
     return df_final
 
 def get_faturamento():
-    with open('querys/faturamento/q-vendas.sql', 'r') as arquivo:
+    with open('querys/faturamento/q-vendas.sql', 'r', encoding='utf-8') as arquivo:
         query = arquivo.read()
 
     return execute_firebird_query(query)

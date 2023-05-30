@@ -27,25 +27,25 @@ def execute_firebird_query(query):
     return df_final
 
 def get_ordem_servico():
-    with open('querys/ordem-servico/q-ordem-servico.sql', 'r') as arquivo:
+    with open('querys/ordem-servico/q-ordem-servico.sql', 'r', encoding='utf-8') as arquivo:
         query = arquivo.read()
 
     return execute_firebird_query(query)
 
 def get_condpagto_os():
-    with open('querys/ordem-servico/q-condpgto-os.sql', 'r') as arquivo:
+    with open('querys/ordem-servico/q-condpgto-os.sql', 'r', encoding='utf-8') as arquivo:
         query = arquivo.read()
 
     return execute_firebird_query(query)
 
 def get_itens_os():
-    with open('querys/ordem-servico/q-itens-os.sql', 'r') as arquivo:
+    with open('querys/ordem-servico/q-itens-os.sql', 'r', encoding='utf-8') as arquivo:
         query = arquivo.read()
 
     return execute_firebird_query(query)
 
 def get_centro_custo():
-    with open('querys/ordem-servico/q-centro-custo.sql', 'r') as arquivo:
+    with open('querys/ordem-servico/q-centro-custo.sql', 'r', encoding='utf-8') as arquivo:
         query = arquivo.read()
 
     return execute_firebird_query(query)

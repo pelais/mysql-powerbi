@@ -2,6 +2,19 @@ import pymysql
 import pandas as pd
 from decimal import Decimal
 
+import logging
+import os
+
+DEFAULT_LOG_FORMAT = '%(asctime)s - [%(levelname)8s] - %(threadName)24s - %(module)24s - %(funcName)24s - %(message)s'
+DEFAULT_LOG_LEVEL = 'INFO'
+LOG_LEVEL = os.getenv('LOG_LEVEL', DEFAULT_LOG_LEVEL)
+LOG_FORMAT = os.getenv('LOG_FORMAT', DEFAULT_LOG_FORMAT)
+
+# enable logging
+logging.basicConfig(format=LOG_FORMAT, level=LOG_LEVEL)
+logger = logging.getLogger(__name__)
+logger.setLevel(LOG_LEVEL)
+
 # Função para converter os tipos de dados
 def convert_types(row):
     converted_row = []
@@ -31,7 +44,7 @@ def create_table(conexao, schema, nome_tabela, dataframe):
 
         comando_sql = genarate_command_sql(nome_tabela, dataframe)
         cursor.execute(comando_sql)
-        print(f'Tabela "{nome_tabela}" criada com sucesso!')
+        logger.info(f'Tabela "{nome_tabela}" criada com sucesso!')
 
         # Inserção dos dados no MySQL
         for _, row in dataframe.iterrows():
@@ -45,9 +58,9 @@ def create_table(conexao, schema, nome_tabela, dataframe):
         # Efetua o commit das alterações no banco de dados
         conexao.commit()
 
-        print(f'Dados inseridos na tabela "{nome_tabela}" com sucesso!')
+        logger.info(f'Dados inseridos na tabela "{nome_tabela}" com sucesso!')
     except pymysql.Error as e:
-        print(f'Erro ao criar ou excluir a tabela "{nome_tabela}": {e}')
+        logger.info(f'Erro ao criar ou excluir a tabela "{nome_tabela}": {e}')
 
 def table_exist(conexao, schema, nome_tabela):
     cursor = conexao.cursor()
