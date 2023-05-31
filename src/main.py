@@ -38,20 +38,21 @@ def main():
     end = datetime.now()
     logger.info('Total execution time: {}'.format((end - start).total_seconds()))
 
-# Função para agendar a execução nos horários desejados
-def schedule_job():
-    job_schedule = ["09:00", "11:00", "13:00", "15:00", "17:00"]
+# # Função para agendar a execução nos horários desejados
+# def schedule_job():
+#     job_schedule = ["09:00", "11:00", "14:30", "15:00", "17:00"]
     
-    for time_str in job_schedule:
-        scheduled_time = datetime.combine(date.today(), time.fromisoformat(time_str))
-        schedule.every().day.at(scheduled_time.strftime("%H:%M")).do(main)
+#     for time_str in job_schedule:
+#         scheduled_time = datetime.combine(date.today(), time.fromisoformat(time_str))
+#         schedule.every().day.at(scheduled_time.strftime("%H:%M")).do(main)
 
-    while True:
-        next_run = schedule.next_run()
-        next_run_str = next_run.strftime("%Y-%m-%d %H:%M:%S")
-        logger.info(f"Próxima execução agendada para: {next_run_str}")
-        schedule.run_pending()
-        time_module.sleep(300) # Verifica a cada 5 minutos
+#     while True:
+#         next_run = schedule.next_run()
+#         next_run_str = next_run.strftime("%Y-%m-%d %H:%M:%S")
+#         logger.info(f"Próxima execução agendada para: {next_run_str}")
+#         schedule.run_pending()
+#         time_module.sleep(300) # Verifica a cada 5 minutos
 
 if __name__ == '__main__':
-    schedule_job()
+    main()
+    # schedule_job()
