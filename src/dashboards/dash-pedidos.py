@@ -1,19 +1,20 @@
 from connection.conn_firebird import connect_to_firebird, execute_query
 import pandas as pd
+from env import FIREBIRD_HOST, FIREBIRD_USER, FIREBIRD_PASSWORD, FIREBIRD_DATABASE_ATUAL, FIREBIRD_DATABASE_BACKUP
 
 def execute_firebird_query(query):
     fb_1 = connect_to_firebird(
-        host='localhost',
-        database='C:\ONCLICK\ARQUIVOS\GRUPO_HS_ATUAL.GDB',
-        user='SYSDBA',
-        password='masterkey'
+        host=FIREBIRD_HOST,
+        database=FIREBIRD_DATABASE_ATUAL,
+        user=FIREBIRD_USER,
+        password=FIREBIRD_PASSWORD
     )
 
     fb_2 = connect_to_firebird(
-        host='localhost',
-        database='C:\ONCLICK\ARQUIVOS\BACKUP_2022.GDB',
-        user='SYSDBA',
-        password='masterkey'
+        host=FIREBIRD_HOST,
+        database=FIREBIRD_DATABASE_BACKUP,
+        user=FIREBIRD_USER,
+        password=FIREBIRD_PASSWORD
     )
 
     result1, columns1 = execute_query(fb_1, query)

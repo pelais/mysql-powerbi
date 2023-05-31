@@ -1,8 +1,8 @@
 from dashboards_functions import *
 from datetime import datetime, time, timedelta, date
-import time as time_module
 import logging
 import os
+import time as time_module
 import schedule
 
 DEFAULT_LOG_FORMAT = '%(asctime)s - [%(levelname)8s] - %(threadName)24s - %(module)24s - %(funcName)24s - %(message)s'
@@ -10,13 +10,18 @@ DEFAULT_LOG_LEVEL = 'INFO'
 LOG_LEVEL = os.getenv('LOG_LEVEL', DEFAULT_LOG_LEVEL)
 LOG_FORMAT = os.getenv('LOG_FORMAT', DEFAULT_LOG_FORMAT)
 
-# enable logging
+# Habilitar o logging
 logging.basicConfig(format=LOG_FORMAT, level=LOG_LEVEL)
 logger = logging.getLogger(__name__)
 logger.setLevel(LOG_LEVEL)
 
-execution_count = 0
-MAX_EXECUTIONS = 5
+# Comando para gerar o executável #
+# 1 - pip install auto-py-to-exe
+# 2- Abrir o terminal e executar: auto-py-to-exe
+# 3 - Incluir os dados do main e será executado caminho do próximo passo
+# 4 - pyinstaller --noconfirm --onefile --console --icon "C:/Ricardo/Github/mysql-powerbi/src/icon.ico" --name "PowerBI - Hidrosilas"  "C:/Ricardo/Github/mysql-powerbi/src/main.py"
+# Comando para gerar o executável #
+
 
 def main():
     start = datetime.now()
@@ -33,50 +38,20 @@ def main():
     end = datetime.now()
     logger.info('Total execution time: {}'.format((end - start).total_seconds()))
 
+# Função para agendar a execução nos horários desejados
+def schedule_job():
+    job_schedule = ["09:00", "11:00", "13:00", "15:00", "17:00"]
+    
+    for time_str in job_schedule:
+        scheduled_time = datetime.combine(date.today(), time.fromisoformat(time_str))
+        schedule.every().day.at(scheduled_time.strftime("%H:%M")).do(main)
+
+    while True:
+        next_run = schedule.next_run()
+        next_run_str = next_run.strftime("%Y-%m-%d %H:%M:%S")
+        logger.info(f"Próxima execução agendada para: {next_run_str}")
+        schedule.run_pending()
+        time_module.sleep(300) # Verifica a cada 5 minutos
+
 if __name__ == '__main__':
-    main()
-
-# def run_main():
-#     global execution_count
-
-#     current_time = datetime.now().time()
-#     current_weekday = date.today().weekday()
-#     start_time = time(8, 0)  # Início do intervalo
-#     end_time = time(19, 0)  # Fim do intervalo
-
-#     if current_time < start_time:
-#         return  # Se o horário atual for anterior a 08:00, não executar o main()
-
-#     if start_time <= current_time <= end_time and current_weekday < 5:  # Executar apenas nos dias úteis e dentro do horário desejado
-#         if execution_count < MAX_EXECUTIONS:
-#             main()
-#             execution_count += 1
-
-# def schedule_runs():
-#     current_time = datetime.now().time()
-#     start_time = time(8, 0)  # Início do intervalo
-#     end_time = time(19, 0)  # Fim do intervalo
-
-#     if current_time < start_time:
-#         schedule.every().day.at('08:00').do(run_main)
-#     elif current_time > end_time:
-#         next_day = datetime.now() + timedelta(days=1)
-#         next_day_start = datetime.combine(next_day.date(), time(8, 0))
-#         schedule.every().day.at(next_day_start.strftime('%H:%M')).do(run_main)
-#     else:
-#         schedule.every().hour.do(run_main)
-
-# def print_next_scheduled_runs():
-#     for job in schedule.jobs:
-#         logger.info('Próxima execução agendada para {}'.format(job.next_run.strftime('%Y-%m-%d %H:%M:%S')))
-
-# # Agendar as execuções
-# schedule_runs()
-
-# while True:
-#     schedule.run_pending()
-
-#     if execution_count == 0:
-#         print_next_scheduled_runs()
-
-#     time_module.sleep(10)
+    schedule_job()
