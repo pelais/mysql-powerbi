@@ -1,4 +1,4 @@
-SELECT DISTINCT
+SELECT FIRST 2
 
     config.razsocialdescriptografado,
     config.FANTASIADESCRIPTOGRAFADO ,
