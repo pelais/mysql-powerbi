@@ -27,11 +27,11 @@ def main():
     start = datetime.now()
     logger.info('Iniciando Geração das tabelas no MYSQL')
 
-    generate_dash_os()
+    # generate_dash_os()
     generate_dash_compras()
-    generate_dash_pedidos()
-    generate_dash_faturamento()
-    generate_dash_financeiro()
+    # generate_dash_pedidos()
+    # generate_dash_faturamento()
+    # generate_dash_financeiro()
 
     logger.info('Processo finalizado com sucesso!')
 
