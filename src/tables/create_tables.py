@@ -70,7 +70,7 @@ def table_exist(conexao, schema, nome_tabela):
 def genarate_command_sql(nome_tabela, dataframe):
     colunas = []
 
-    for coluna, tipo in dataframe.dtypes.iteritems():
+    for coluna, tipo in dataframe.dtypes.items(): #Alterei a função "iteritems" por "items"
         if tipo == 'object':
             tipo_coluna = 'TEXT'
         elif tipo == 'int64':
