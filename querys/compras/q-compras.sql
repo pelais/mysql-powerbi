@@ -1,4 +1,4 @@
-SELECT FIRST 2
+SELECT
 
     config.razsocialdescriptografado,
     config.FANTASIADESCRIPTOGRAFADO ,
